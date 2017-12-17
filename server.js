@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const logging = require("morgan");
 const errorHandler = require("errorhandler");
 const routes = require("./routes");
-const Store = require("./store");
+const Store = require("./models/store");
 
 const app = express();
 app.use(bodyParser.json());

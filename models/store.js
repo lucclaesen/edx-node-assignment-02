@@ -2,14 +2,15 @@ const guid = require("uuid/v4");
 const Post = require("./post");
 
 /**
- * A hash table store for posts. Every post is stored as a
- * value for it's id property.
+ * A hash table store for posts. For a quick and continous lookup,
+ * blog posts are stored as 
  */
 class Store {
 
   /**
    * Initializes a new instance of the Store class.
-   * @param {*} posts : the store, if any
+   * @param {*} posts : the store to use, if any. If not provided, a blank store
+   *                    will be created.
    */
   constructor(posts = {}) {
     this.posts = posts;
@@ -39,7 +40,7 @@ class Store {
   /**
    * Gets the post with the given id
    * @param {*} id 
-   * @returns The post with the given id.
+   * @returns   The post with the given id.
    */
   getPost(id) {
     return this.posts[id];
@@ -52,7 +53,6 @@ class Store {
   deletePost(id) {
     delete this.posts[id];
   }
-
 }
 
 module.exports = Store
