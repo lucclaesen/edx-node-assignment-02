@@ -5,11 +5,9 @@ class Comment {
 
   /**
    * Initializes a blog post comment
-   * @param {*} id    The id of the new comment.
    * @param {*} text  The text of the new comment.
    */
-  constructor(id, text) {
-    this.id = id;
+  constructor(text) {
     this.text = text;
   }
 

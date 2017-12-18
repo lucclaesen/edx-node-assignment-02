@@ -1,3 +1,5 @@
+const createIdentifiableResource = require("./utils");
+
 const postsRoute = "/posts";
 const postRoute = "/posts/:postId";
 
@@ -21,8 +23,10 @@ function configureWith(app, store) {
    * Creates a route for GET /posts/:postId
    */
   app.get(postsRoute, (req, resp) => {
-    const res = store.getPosts();
-    resp.status(200).send(res);
+    const posts = store.getPosts();
+    const postResources = Object.keys(posts)
+      .map(key => createIdentifiableResource(key, posts[key]));
+    resp.status(200).send(postResources);
   });
 
   /**
@@ -31,7 +35,7 @@ function configureWith(app, store) {
   app.get(postRoute, (req, resp) => {
     const postId = req.params.postId;
     const res = store.getPost(postId);
-    resp.status(200).send(res);
+    resp.status(200).send(createIdentifiableResource(postId, res));
   });
 
   /**

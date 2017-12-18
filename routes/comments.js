@@ -1,3 +1,5 @@
+const createIdentifiableResource = require("./utils");
+
 const commentsRoute = "/posts/:postId/comments";
 const commentRoute = "/posts/:postId/comments/:commentId";
 
@@ -14,7 +16,9 @@ function configureWith(app, store) {
   app.get(commentsRoute, (req, resp) => {
     const postId = req.params.postId;
     const comments = store.getPost(postId).getComments();
-    resp.status(200).send(comments);
+    const commentsResources = Object.keys(comments)
+      .map((key) => createIdentifiableResource(key, comments[key]));
+    resp.status(200).send(commentsResources);
   });
 
   /**
@@ -24,7 +28,7 @@ function configureWith(app, store) {
     const postId = req.params.postId;
     const commentId = req.params.commentId;
     const comment = store.getPost(postId).getComment(commentId);
-    resp.status(200).send(comment);
+    resp.status(200).send(createIdentifiableResource(commentId, comment));
   });
 
   /**

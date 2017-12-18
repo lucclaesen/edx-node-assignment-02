@@ -20,8 +20,9 @@ class Store {
    * Gets the posts in the store.
    */
   getPosts() {
-    return Object.keys(this.posts)
-      .map(key => this.posts[key]);
+    return this.posts;
+    // return Object.keys(this.posts)
+    //   .map(key => this.posts[key]);
   }
 
   /**
@@ -33,7 +34,7 @@ class Store {
    */
   addPost(name, url, text) {
     const id = guid();
-    this.posts[id] = new Post(id, name, url, text);
+    this.posts[id] = new Post(name, url, text);
     return id;
   }
 

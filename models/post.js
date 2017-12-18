@@ -8,13 +8,11 @@ class Post {
   
   /**
    * Initializes a Post instance.
-   * @param {*} id 
    * @param {*} name 
    * @param {*} url 
    * @param {*} text 
    */
-  constructor(id, name, url, text) {
-    this.id = id;
+  constructor(name, url, text) {
     this.name = name;
     this.url = url;
     this.text = text;
@@ -28,7 +26,7 @@ class Post {
    */
   addComment(text) {
     const id = guid();
-    this.comments[id] = new Comment(id, text);
+    this.comments[id] = new Comment(text);
     return id;
   }
 
@@ -36,8 +34,9 @@ class Post {
    * Gets the comments on this post.
    */
   getComments() {
-    return Object.keys(this.comments)
-      .map(key => this.comments[key]);
+    return this.comments;
+    // return Object.keys(this.comments)
+    //   .map(key => this.comments[key]);
   }
 
   /**
