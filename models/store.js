@@ -21,8 +21,6 @@ class Store {
    */
   getPosts() {
     return this.posts;
-    // return Object.keys(this.posts)
-    //   .map(key => this.posts[key]);
   }
 
   /**
